@@ -16,6 +16,10 @@ public class Film
 
     public string Description {get; set;} = string.Empty;
 
-    public List<Review> Reviews {get; set;}
-    public List<Actor> Actors {get; set;}
+    public List<Review> Reviews {get; set;} = new List<Review>();
+    public List<Actor> Actors {get; set;}  = new List<Actor>();
+    public List<Music> Musics {get;set;}= new List<Music>();
+    public List<Source> Sources {get; set;}= new List<Source>();
+
+    public Account Account {get; set;}
 }
