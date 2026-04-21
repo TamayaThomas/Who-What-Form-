@@ -11,7 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<Account> Accounts {get; set;}
 
     public DbSet<Actor> Actors {get; set;}
-    public DbSet<From> Froms {get; set;}
+    public DbSet<Source> Sources {get; set;}
     public DbSet<Music> Musics {get; set;}
 
     public AppDbContext(DbContextOptions<AppDbContext> options)

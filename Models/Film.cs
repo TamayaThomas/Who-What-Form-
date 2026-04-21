@@ -16,6 +16,8 @@ public class Film
 
     public string Description {get; set;} = string.Empty;
 
+    [Display(Name = "Film Image")]
+    public string ImageUrl { get; set; } = string.Empty;
     public List<Review> Reviews {get; set;} = new List<Review>();
     public List<Actor> Actors {get; set;}  = new List<Actor>();
     public List<Music> Musics {get;set;}= new List<Music>();

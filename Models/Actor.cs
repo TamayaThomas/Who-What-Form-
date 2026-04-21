@@ -14,6 +14,9 @@ public class Actor
     public string Fname {get; set;}
     [Required]
     public string Lname {get; set;}
+    
+    [Display(Name = "Actor Image")]
+    public string ImageUrl { get; set; } = string.Empty;
 
 
     public Film Film {get; set;}

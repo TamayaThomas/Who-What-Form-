@@ -7,6 +7,7 @@ namespace Who_What_Form_.Models;
 public class Account
 {
     [Key]
+    [Required]
     public int UserId {get; set;} //primary key 
     
     [Required]
