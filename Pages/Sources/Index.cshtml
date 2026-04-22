@@ -1,0 +1,48 @@
+@page
+@model Who_What_Form_.Pages_Sources.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Source[0].SourceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source[0].SourceType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source[0].Film)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Source) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Film.FilmID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SourceID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SourceID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SourceID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

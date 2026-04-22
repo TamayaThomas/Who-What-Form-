@@ -1,0 +1,45 @@
+@page
+@model Who_What_Form_.Pages_Sources.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Source</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Source.SourceID" />
+            <div class="form-group">
+                <label asp-for="Source.SourceName" class="control-label"></label>
+                <input asp-for="Source.SourceName" class="form-control" />
+                <span asp-validation-for="Source.SourceName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Source.SourceType" class="control-label"></label>
+                <input asp-for="Source.SourceType" class="form-control" />
+                <span asp-validation-for="Source.SourceType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Source.FilmID" class="control-label"></label>
+                <select asp-for="Source.FilmID" class="form-control" asp-items="ViewBag.FilmID" ></select>
+                <span asp-validation-for="Source.FilmID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
