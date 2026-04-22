@@ -6,6 +6,7 @@ namespace Who_What_Form_.Models;
 
 public class Review
 {
+    [Key]
     public int ReviewID {get; set;} //primary key 
 
     [Range(1, 5)]

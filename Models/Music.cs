@@ -6,6 +6,7 @@ namespace Who_What_Form_.Models;
 
 public class Music
 {
+    [Key]
     public int SongID  {get; set;}
     
     [Required]

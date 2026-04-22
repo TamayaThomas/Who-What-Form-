@@ -6,13 +6,16 @@ namespace Who_What_Form_.Models;
 
 public class Actor
 {
+    [Key]
     public int ActorID {get; set;}
 
     public int FilmID {get; set;}
 
     [Required]
+    [Display(Name = "First Name")]
     public string Fname {get; set;}
     [Required]
+    [Display(Name = "Last Name")]
     public string Lname {get; set;}
     
     [Display(Name = "Actor Image")]

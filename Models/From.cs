@@ -7,6 +7,7 @@ namespace Who_What_Form_.Models;
 
 public class Source
 {
+    [Key]
     public int SourceID {get; set;} //pk
     public string SourceName  {get; set;} = string.Empty;
 

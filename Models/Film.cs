@@ -6,6 +6,7 @@ namespace Who_What_Form_.Models;
 
 public class Film
 {
+    [Key]
     public int FilmID {get; set;} //primary key
     public int UserId {get; set;} //foreign key
 
