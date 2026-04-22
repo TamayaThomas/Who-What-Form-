@@ -8,7 +8,6 @@ public class AppDbContext : DbContext
     public DbSet<Film> Films {get; set;}
     public DbSet<Review> Reviews {get; set;}
 
-    public DbSet<Account> Accounts {get; set;}
 
     public DbSet<Actor> Actors {get; set;}
     public DbSet<Source> Sources {get; set;}

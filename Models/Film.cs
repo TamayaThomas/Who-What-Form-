@@ -8,7 +8,6 @@ public class Film
 {
     [Key]
     public int FilmID {get; set;} //primary key
-    public int UserId {get; set;} //foreign key
 
     public string Title {get; set;} = string.Empty;
 
@@ -23,6 +22,4 @@ public class Film
     public List<Actor> Actors {get; set;}  = new List<Actor>();
     public List<Music> Musics {get;set;}= new List<Music>();
     public List<Source> Sources {get; set;}= new List<Source>();
-
-    public Account Account {get; set;}
 }

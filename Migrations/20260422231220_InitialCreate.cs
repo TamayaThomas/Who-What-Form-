@@ -11,42 +11,19 @@ namespace Who_What_Form_.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(type: "TEXT", maxLength: 25, nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", maxLength: 25, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Accounts", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Films",
                 columns: table => new
                 {
                     FilmID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Rating = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
-                    ImageUrl = table.Column<string>(type: "TEXT", nullable: false),
-                    AccountUserId = table.Column<int>(type: "INTEGER", nullable: false)
+                    ImageUrl = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Films", x => x.FilmID);
-                    table.ForeignKey(
-                        name: "FK_Films_Accounts_AccountUserId",
-                        column: x => x.AccountUserId,
-                        principalTable: "Accounts",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,11 +118,6 @@ namespace Who_What_Form_.Migrations
                 column: "FilmID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Films_AccountUserId",
-                table: "Films",
-                column: "AccountUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Musics_FilmID",
                 table: "Musics",
                 column: "FilmID");
@@ -178,9 +150,6 @@ namespace Who_What_Form_.Migrations
 
             migrationBuilder.DropTable(
                 name: "Films");
-
-            migrationBuilder.DropTable(
-                name: "Accounts");
         }
     }
 }

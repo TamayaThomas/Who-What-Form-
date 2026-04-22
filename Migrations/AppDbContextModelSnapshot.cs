@@ -16,31 +16,6 @@ namespace Who_What_Form_.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.6");
 
-            modelBuilder.Entity("Who_What_Form_.Models.Account", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Accounts");
-                });
-
             modelBuilder.Entity("Who_What_Form_.Models.Actor", b =>
                 {
                     b.Property<int>("ActorID")
@@ -75,9 +50,6 @@ namespace Who_What_Form_.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AccountUserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -94,12 +66,7 @@ namespace Who_What_Form_.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("FilmID");
-
-                    b.HasIndex("AccountUserId");
 
                     b.ToTable("Films");
                 });
@@ -190,17 +157,6 @@ namespace Who_What_Form_.Migrations
                     b.Navigation("Film");
                 });
 
-            modelBuilder.Entity("Who_What_Form_.Models.Film", b =>
-                {
-                    b.HasOne("Who_What_Form_.Models.Account", "Account")
-                        .WithMany("Films")
-                        .HasForeignKey("AccountUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-                });
-
             modelBuilder.Entity("Who_What_Form_.Models.Music", b =>
                 {
                     b.HasOne("Who_What_Form_.Models.Film", "Film")
@@ -232,11 +188,6 @@ namespace Who_What_Form_.Migrations
                         .IsRequired();
 
                     b.Navigation("Film");
-                });
-
-            modelBuilder.Entity("Who_What_Form_.Models.Account", b =>
-                {
-                    b.Navigation("Films");
                 });
 
             modelBuilder.Entity("Who_What_Form_.Models.Film", b =>
