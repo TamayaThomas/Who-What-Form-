@@ -22,7 +22,9 @@ namespace Who_What_Form_.Pages_Films
 
         public async Task OnGetAsync()
         {
-            Film = await _context.Films.ToListAsync();
+            Film = await _context.Films
+            .Include(f => f.Reviews)
+            .ToListAsync();
         }
     }
 }
