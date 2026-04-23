@@ -23,7 +23,7 @@ public class AddReviewModel : PageModel
 
     public void OnGet()
     {
-        FilmsDropDown = new SelectList(_context.Films.ToList(), "MovieID", "Title");
+        FilmsDropDown = new SelectList(_context.Films.ToList(), "FilmID", "Title");
     }
 
     public IActionResult OnPost()
