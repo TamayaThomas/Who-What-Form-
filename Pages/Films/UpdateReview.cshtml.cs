@@ -40,7 +40,7 @@ public class UpdateReviewModel : PageModel
             Review = review;
         }
 
-        FilmsDropDown = new SelectList(_context.Films.ToList(), "MovieID", "Title");
+        FilmsDropDown = new SelectList(_context.Films.ToList(), "FilmID", "Title");
         return Page();
     }
 

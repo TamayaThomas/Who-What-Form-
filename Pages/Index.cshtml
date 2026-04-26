@@ -3,8 +3,144 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    .slideshow1{@*https://www.w3schools.com/cssref/tryit.php?filename=trycss3_columns*@
+        columns: 100px 2;
+    }
+    .slideshow2{
+        columns: 100px 2;
+    }
+    #Net{
+        color: black;
+    }
+    #YT{
+        color: black;
+    }
+    #Apple{
+        color: black;
+    }
+    #Pan{
+        color: black;
+    }
+    #Prime{
+        color: black;
+    }
+    #peac{
+        color: black;
+    }
+    body{
+        background-color: lightblue;
+    }
+</style>
+<body>
+    <h1 style="text-align: center;">Welcome to Who? What? From?</h1>
+    <p style="text-align: center;"><strong>Ever lose track to what you watch?
+         If the answer is yes then you are in luck!!!
+         Not only does this app keep track of what you watch it even keeps track of your favorite Actors and Songs.
+        Thats not all it even keeps track of books the film may be based on.</strong></p>
+    <div class="slideshow1">@*https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_carousel2*@
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="6" aria-label="Slide 7"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/Netflix.jpg" class="d-block w-100" alt="net" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 id="Net">Netflix</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/hbo.jpg" class="d-block w-100" alt="hbo" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>HBO max</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/Tubi.png" class="d-block w-100" alt="tubi" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Tubi</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/yt.webp" class="d-block w-100" alt="Youtube" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 id="YT">Youtube</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/dis.webp" class="d-block w-100" alt="Disney" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Disney +</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/prime.webp" class="d-block w-100" alt="Prime" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 id="Prime">Prime Video</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/peac.webp" class="d-block w-100" alt="Peacock" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 id="peac">Peacock App</h5>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <p style="text-align: center; font-size: 30px;">Discover where to watch your favorite movies and shows across multiple platforms. Keep track of what you've seen and what’s next on your list.</p>
+    </div>
+    <p style="font-size: 30px; text-align: center"><strong>Don't forget this app also includes Music.</strong></p>
+    <div class="slideshow2">
+        <p style="text-align-last: justify;font-size: 30px;">Stay connected to your favorite music platforms. Log songs, artists, and albums so you never forget what you love listening to.</p>
+        <div id="carouselExample2" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/Apple.png" class="d-block w-100" alt="net" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 id="Apple">Apple Music</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/spotify.jpg" class="d-block w-100" alt="hbo" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Spotify</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/Pan.jpeg" class="d-block w-100" alt="tubi" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 id="Pan">Pandora</h5>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</body>

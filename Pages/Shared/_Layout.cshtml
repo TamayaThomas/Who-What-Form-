@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Who_What_Form_</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />@*https://bootswatch.com/*@
+    @*https://danacidm.gitbook.io/cidm-3312/frontend-and-bootstrap/bootstrap-themes*@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Who_What_Form_.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="~/BootstrapDemo.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">@*GO to lab 5*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
 <body>
     <header>
@@ -30,11 +34,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Films/Index">Films</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Films/AddReview">Add Review</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Films/DeleteReview">Delete Review</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Actors/Index">Who</a>

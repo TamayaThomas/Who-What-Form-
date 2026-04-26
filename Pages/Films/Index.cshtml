@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-center">Welcome to the Watchlist</h1>
+<h1 class="text-center">Welcome to Your Watchlist</h1>
 <a asp-page="Create"><button type="button" class="btn btn-outline-secondary btn-sm">Add New Film</button></a>
 
 <div class="container">
@@ -23,6 +23,7 @@
                 <div class="btn-group mt-2">@*https://www.w3schools.com/bootstrap5/tryit.asp?filename=trybs_button_group_inline&stacked=h*@
                         <a asp-page="./Edit" asp-route-id="@f.FilmID" class="btn btn-outline-secondary btn-sm">Edit</a>
                         <a asp-page="./Details" asp-route-id="@f.FilmID" class="btn btn-outline-secondary btn-sm">Details</a>
+                        <a asp-page="./AddReview" asp-route-id="@f.FilmID" class="btn btn-outline-secondary btn-sm">Add Review</a>
                         <a asp-page="./Delete" asp-route-id="@f.FilmID" class="btn btn-outline-danger btn-sm">Delete</a>
                 </div>
                     <p>
@@ -50,6 +51,7 @@
                     @foreach (var r in f.Reviews)
                     {
                         <p class="p-2">@r.ReviewText<strong> Score: @r.Score / 5</strong></p>
+                            <a asp-page="./DeleteReview" asp-route-id="@f.FilmID" class="btn btn-outline-secondary btn-sm">Delete Review</a>
                         <hr class="my-0">
                     }
                     </div>
