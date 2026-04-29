@@ -4,12 +4,6 @@
     ViewData["Title"] = "Home page";
 }
 <style>
-    .slideshow1{@*https://www.w3schools.com/cssref/tryit.php?filename=trycss3_columns*@
-        columns: 100px 2;
-    }
-    .slideshow2{
-        columns: 100px 2;
-    }
     #Net{
         color: black;
     }
@@ -28,17 +22,225 @@
     #peac{
         color: black;
     }
-    body{
-        background-color: lightblue;
+    #snackbar {
+        visibility: hidden; /* Hidden by default. Visible on click */
+        min-width: 250px; /* Set a default minimum width */
+        margin-left: -125px; /* Divide value of min-width by 2 */
+        background-color: #333; /* Black background color */
+        color: #fff; /* White text color */
+        text-align: center; /* Centered text */
+        border-radius: 2px; /* Rounded borders */
+        padding: 16px; /* Padding */
+        position: fixed; /* Sit on top of the screen */
+        z-index: 1; /* Add a z-index if needed */
+        left: 50%; /* Center the snackbar */
+        bottom: 30px; /* 30px from the bottom */
     }
+    #snackbar.show {
+        visibility: visible; /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Animations to fade the snackbar in and out */
+    @@-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+    }
+
+    @@keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+    }
+
+    @@-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+    }
+
+    @@keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+    }
+    #btn{
+        text-align: center;
+        margin: 4px 2px;
+        opacity: 0.6;
+        transition: 0.3s;
+    }
+    #btn:hover {opacity: 1}
+.galcontainer img:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+    gap: 20px;
+  align-items: center;
+}
+
+.gallery-item {
+  position: relative;
+  width: 150px;
+  height: auto;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.1);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+/* Modal content (image) */
+.modal-content {
+  position: relative;
+  width: 90%;
+  height: auto;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 5px;
+  overflow: hidden;
+  animation: zoomIn 0.5s;
+}
+
+@@keyframes zoomIn {
+  from {transform: scale(0.6);}
+  to {transform: scale(1);}
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+/* Caption of modal image */
+.caption {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+@@media screen and (max-width: 768px) {
+  .gallery-item {
+     width: calc(50% - 20px);
+  }
+}
+
+@@media screen and (max-width: 480px) {
+  .gallery-item  {
+    width: calc(100% - 20px);
+  }
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.galcontainer:hover .image {
+  opacity: 0.3;
+}
+
+.galcontainer:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
 </style>
-<body>
-    <h1 style="text-align: center;">Welcome to Who? What? From?</h1>
-    <p style="text-align: center;"><strong>Ever lose track to what you watch?
-         If the answer is yes then you are in luck!!!
-         Not only does this app keep track of what you watch it even keeps track of your favorite Actors and Songs.
-        Thats not all it even keeps track of books the film may be based on.</strong></p>
-    <div class="slideshow1">@*https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_carousel2*@
+<div id="title" style=" position: relative; text-align: center; color: white;">
+    <img src="~/img/WatchTV.jpg" alt="title" style="width:100%; height:550px; color: black;" />
+    <div class="WWF" style="position: absolute; top: 18px; left: 25%; ">@*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_text*@
+        <h1>Welcome to Who? What? From?</h1>
+    </div>
+    <div id="text-block" style="position: absolute;bottom: 60px;right: 20px; background-color: rgb(0, 0, 0); color: white; padding-left: 20px; padding-right: 20px; width: 50%; opacity: 50%"> @*https://www.w3schools.com/howto/howto_css_image_text_blocks.asp*@
+        <h4>Watching TV</h4>
+        <p>This app is you never have to forget what you watch or that actor was.</p>
+    </div>
+    <button id="btn" onclick="myFunction()" style="position: absolute;bottom: 20px;  left: 40%; background-color: rgb(79, 2, 2); color: white;">Show Ominous Message</button>@*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_fade1*@
+    <div id="snackbar">Ready to never forget what you watched
+        <script>
+        function myFunction() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);}
+        </script>
+    </div>
+</div>
+
+<div class="container mt-3" style="columns: 100px 2;">
+    <div class="mt-4 bg-info text-white rounded">
+        <div class="slideshow1">@*https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_carousel2*@
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -51,43 +253,43 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="img/Netflix.jpg" class="d-block w-100" alt="net" />
+                    <img src="img/Netflix.png" class="d-block w-100" alt="net" style="width:100%; height: 225px" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5 id="Net">Netflix</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/hbo.jpg" class="d-block w-100" alt="hbo" />
+                    <img src="/img/hbo.png" class="d-block w-100" alt="hbo"style="width:100%;height: 50%" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5>HBO max</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/Tubi.png" class="d-block w-100" alt="tubi" />
+                    <img src="/img/Tubi.png" class="d-block w-100" alt="tubi"style="width:100%;height: 50%" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Tubi</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/yt.webp" class="d-block w-100" alt="Youtube" />
+                    <img src="/img/yt.webp" class="d-block w-100" alt="Youtube"style="width:100%; height: 50%" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5 id="YT">Youtube</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/dis.webp" class="d-block w-100" alt="Disney" />
+                    <img src="/img/dis.png" class="d-block w-100" alt="Disney"style="width:100%; height: 50%" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Disney +</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/prime.webp" class="d-block w-100" alt="Prime" />
+                    <img src="/img/prime.webp" class="d-block w-100" alt="Prime"style="width:100%; height: 50%" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5 id="Prime">Prime Video</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/peac.webp" class="d-block w-100" alt="Peacock" />
+                    <img src="/img/peac.png" class="d-block w-100" alt="Peacock" style="width:100% height: 50%"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5 id="peac">Peacock App</h5>
                     </div>
@@ -102,15 +304,16 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <p style="text-align: center; font-size: 30px;">Discover where to watch your favorite movies and shows across multiple platforms. Keep track of what you've seen and what’s next on your list.</p>
+        </div>
+        <div class="conatiner-fluid mt- 3">
+            <h3>WWF works with any platform</h3>
+            <p style="text-align: center;">Discover where to watch your favorite movies and shows across multiple platforms. Keep track of what you've seen and what’s next on your list.</p>
+
+        </div>
+
     </div>
-    @*https://www.w3schools.com/bootstrap4/bootstrap_alerts.asp*@
-    <div class="alert alert-info alert-dismissible fade show">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Info!</strong> Don't forget this app also includes Music.
-    </div>
-    <div class="slideshow2">
-        <p style="text-align-last: justify;font-size: 30px;">Stay connected to your favorite music platforms. Log songs, artists, and albums so you never forget what you love listening to.</p>
+    <div class="mt-4 bg-info text-white rounded">
+        <div class="slideshow2">
         <div id="carouselExample2" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -119,19 +322,19 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="img/Apple.png" class="d-block w-100" alt="net" />
+                    <img src="img/Apple.png" class="d-block w-100" alt="net" style="width:100%; height: 225px"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5 id="Apple">Apple Music</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/spotify.jpg" class="d-block w-100" alt="hbo" />
+                    <img src="/img/spotify.webp" class="d-block w-100" alt="hbo" style="width:100%; height: 225px"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Spotify</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/Pan.jpeg" class="d-block w-100" alt="tubi" />
+                    <img src="/img/Pan.png" class="d-block w-100" alt="tubi" style="width:100%; height: 225px"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5 id="Pan">Pandora</h5>
                     </div>
@@ -146,5 +349,68 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        </div>
+        <div class="conatiner-fluid mt- 3">
+            <h3>WWF works with any platform</h3>
+            <p style="text-align: center;">Find your favorite song from the film. Keep track of what you've heard and what’s your next tune.</p>
+
+        </div>
     </div>
-</body>
+</div>
+
+<div class="galcontainer"> @*https://www.w3schools.com/howto/howto_css_shake_image.asp &  https://www.w3schools.com/css/css3_images_modal.asp*@
+    <div class="gallery">
+        <a asp-page="/Films/Index">
+            <img src="img/clapper.png" alt="clapper" class="gallery-item" onclick="openModal('modal1', 'Watchlist Page')" width="250" height="200" style="opacity: 1; display: block; transition: .5s ease; backface-visibility: hidden;" />
+        </a>
+        <a asp-page="/Actors/Index">
+            <img src="img/actor.webp" alt="actor" class="gallery-item" onclick="openModal('modal4', 'Actor Gallery')" width="250" height="200" style="opacity: 1; display: block;  transition: .5s ease; backface-visibility: hidden;"/>
+        </a>
+        <a asp-page="/Musics/Index">
+            <img src="img/note.png" alt="music" class="gallery-item" onclick="openModal('modal2', 'Songlist')" width="150" height="100" style="opacity: 1; display: block;  transition: .5s ease; backface-visibility: hidden;"/>
+        </a>
+        <a asp-page="/Sources/Index">
+            <img src="img/book.png" alt="inspo" class="gallery-item" onclick="openModal('modal3', 'Insporation Page')" width="150" height="100" style="opacity: 1; display: block;  transition: .5s ease; backface-visibility: hidden;"/>
+        </a>
+    </div>
+    <div id="modal1" class="modal">
+        <span class="close" onclick="closeModal('modal1')">&times;</span>
+        <img src="img/clapper.png" alt="clapper" class="gallery-item" onclick="openModal('modal1', 'Watchlist Page')" width="150" height="100" />
+        <div class="caption"></div>
+    </div>
+    <div id="modal2" class="modal">
+        <span class="close" onclick="closeModal('modal2')">&times;</span>
+        <img src="img/note.png" alt="music" class="gallery-item" onclick="openModal('modal2', 'Songlist')" width="600" height="400" />
+        <div class="caption"></div>
+    </div>
+    <div id="modal3" class="modal">
+        <span class="close" onclick="closeModal('modal3')">&times;</span>
+        <img src="img/book.png" alt="inspo" class="gallery-item" onclick="openModal('modal3', 'Insporation Page')" width="600" height="400" />
+        <div class="caption"></div>
+    </div>
+    <div id="modal4" class="modal">
+        <span class="close" onclick="closeModal('modal4')">&times;</span>
+        <img src="img/actor.webp" alt="actor" class="gallery-item" onclick="openModal('modal4', 'Actor Gallery')" width="600" height="400" />
+        <div class="caption"></div>
+    </div>
+    <script>
+    function openModal(modalId, caption) {
+        let modal = document.getElementById(modalId);
+        modal.style.display = "flex";
+        modal.classList.add("show");
+        let message = modal.querySelector(".caption");
+        message.innerText = caption;
+    }
+
+    function closeModal(modalId) {
+        let modal = document.getElementById(modalId);
+        modal.classList.remove("show");
+        setTimeout(function () {
+            modal.style.display = "none";
+            modal.querySelector(".caption").innerText = "";
+        }, 300);
+    }
+    </script>
+</div>
+
+
