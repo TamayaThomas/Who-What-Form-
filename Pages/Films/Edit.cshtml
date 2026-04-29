@@ -21,7 +21,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Film.Rating" class="control-label"></label>
-                <input asp-for="Film.Rating" class="form-control" />
+                <select asp-for="Film.Rating" class="form-select">
+                    <option>G</option>@*https://en.wikipedia.org/wiki/Motion_Picture_Association_film_rating_system*@
+                    <option>PG</option>
+                    <option>PG-13</option>
+                    <option>R</option>
+                    <option>NC-17</option>
+                    <option>Not Rated (NR)</option>
+                    <option>Unrated (UR)</option>
+                </select>
                 <span asp-validation-for="Film.Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -31,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Film.ImageUrl" class="control-label"></label>
-                <input asp-for="Film.ImageUrl" class="form-control" />
+                <input type="file" name="ImageFile" class="form-control" />
                 <span asp-validation-for="Film.ImageUrl" class="text-danger"></span>
             </div>
             <div class="form-group">

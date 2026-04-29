@@ -22,21 +22,21 @@ namespace Who_What_Form_.Pages_Films
 
         public async Task OnGetAsync()
         {
-            Film = await _context.Films
-            .Include(f => f.Reviews)
-            .ToListAsync();
 
              TotalPages = (int)Math.Ceiling(_context.Films.Count() / (double)PageSize);
     
-            Film = await _context.Films.Include(s => s.Reviews!)
-                .Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync(); 
             
-            var query = _context.Films.Include(s => s.Reviews!).Select(s => s);
+            
+            var query = _context.Films
+            .Include(s => s.Reviews!)
+            .Select(s => s);
 
             if (!string.IsNullOrEmpty(CurrentSearch))
-{
-            query = query.Where(s => s.Title.Contains(CurrentSearch) || s.Description.Contains(CurrentSearch));
+            {
+                            query = query.Where(s => s.Title.Contains(CurrentSearch) || s.Description.Contains(CurrentSearch));
 
+            }
+{
             switch (CurrentSort)
             {
                 case "first_asc":

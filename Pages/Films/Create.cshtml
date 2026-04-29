@@ -11,16 +11,24 @@
     <hr />
     <div class="row">
     <div class="col-md-4">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Film.Title" class="control-label"></label>
                 <input asp-for="Film.Title" class="form-control" />
                 <span asp-validation-for="Film.Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group">@*https://www.w3schools.com/bootstrap5/tryit.asp?filename=trybs_form_select&stacked=h*@
                 <label asp-for="Film.Rating" class="control-label"></label>
-                <input asp-for="Film.Rating" class="form-control" />
+                <select asp-for="Film.Rating" class="form-select"  name="rating" id="ratings">
+                    <option>G</option>@*https://en.wikipedia.org/wiki/Motion_Picture_Association_film_rating_system*@
+                    <option>PG</option>
+                    <option>PG-13</option>
+                    <option>R</option>
+                    <option>NC-17</option>
+                    <option>Not Rated (NR)</option>
+                    <option>Unrated (UR)</option>
+                </select>
                 <span asp-validation-for="Film.Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,9 +36,9 @@
                 <input asp-for="Film.Description" class="form-control" />
                 <span asp-validation-for="Film.Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group">@*https://www.w3schools.com/tags/att_input_type_file.asp*@
                 <label asp-for="Film.ImageUrl" class="control-label"></label>
-                <input asp-for="Film.ImageUrl" class="form-control" />
+                <input type="file" name="ImageFile" class="form-control" />
                 <span asp-validation-for="Film.ImageUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
