@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Who_What_Form_.Models;
 
 namespace Who_What_Form_.Pages_Films
-{
+{    
     public class IndexModel : PageModel
     {
         private readonly Who_What_Form_.Models.AppDbContext _context;
@@ -25,6 +25,17 @@ namespace Who_What_Form_.Pages_Films
             Film = await _context.Films
             .Include(f => f.Reviews)
             .ToListAsync();
+
+             TotalPages = (int)Math.Ceiling(_context.Films.Count() / (double)PageSize);
+    
+            Film = await _context.Films.Include(s => s.Reviews!)
+                .Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync(); 
         }
+
+        [BindProperty(SupportsGet = true)]
+        public int PageNum {get; set;} = 1;
+        public int PageSize {get; set;} = 10;
+        public int TotalPages {get; set;}
+
     }
 }

@@ -4,7 +4,34 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0px;
+    }
 
+    .pagination li a {
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+        border: 1px solid rgb(38, 0, 255);
+        color: black;
+        margin: 0 4px;
+        border-radius: 5px;
+        transition: background-color 1s;  
+    }
+
+    .pagination li a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .pagination li a:hover:not(.active) {
+        background-color: lightgray;
+    }
+</style>
 <h1 class="text-center">Welcome to Your Watchlist</h1>
 <a asp-page="Create"><button type="button" class="btn btn-outline-secondary btn-sm">Add New Film</button></a>
 
@@ -60,3 +87,24 @@
         <hr class="my-4" />
     }
 </div>
+<hr />
+@{
+    // If we are on page 1, prevDisabled will be set to the "disabled" class
+    // otherwise, it will be empty. So our previous button will be enabled or disabled based on this logic
+    var prevDisabled = "";
+    var nextDisabled = "";
+    if (Model.PageNum <= 1)
+    {
+        prevDisabled = "disabled";
+    }
+    if (Model.PageNum >= Model.TotalPages)
+    {
+        nextDisabled = "disabled";
+    }
+}
+<nav aria-label="Page navigation example">@*https://www.w3schools.com/css/tryit.asp?filename=trycss_ex_pagination_transition*@
+    <ul class="pagination">
+        <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+        <li class="page-item @nextDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+    </ul>
+</nav>
