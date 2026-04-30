@@ -4,22 +4,10 @@
     ViewData["Title"] = "Home page";
 }
 <style>
-    #Net{
-        color: black;
+    body {
+        background-color: #535252;
     }
-    #YT{
-        color: black;
-    }
-    #Apple{
-        color: black;
-    }
-    #Pan{
-        color: black;
-    }
-    #Prime{
-        color: black;
-    }
-    #peac{
+    #YT, #Tubi, #Prime{
         color: black;
     }
     #snackbar {
@@ -223,12 +211,12 @@ h1 {
     <div class="WWF" style="position: absolute; top: 18px; left: 25%; ">@*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_text*@
         <h1>Welcome to Who? What? From?</h1>
     </div>
-    <div id="text-block" style="position: absolute;bottom: 60px;right: 20px; background-color: rgb(0, 0, 0); color: white; padding-left: 20px; padding-right: 20px; width: 50%; opacity: 50%"> @*https://www.w3schools.com/howto/howto_css_image_text_blocks.asp*@
+    <div id="text-block" style="position: absolute;bottom: 60px;right: 20px; background-color: rgb(0, 0, 0); color: white; padding-left: 20px; padding-right: 20px; width: 50%; opacity: .25"> @*https://www.w3schools.com/howto/howto_css_image_text_blocks.asp*@
         <h4>Watching TV</h4>
         <p>This app is you never have to forget what you watch or that actor was.</p>
     </div>
-    <button id="btn" onclick="myFunction()" style="position: absolute;bottom: 20px;  left: 40%; background-color: rgb(79, 2, 2); color: white;">Show Ominous Message</button>@*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_fade1*@
-    <div id="snackbar">Ready to never forget what you watched
+    <button id="btn" onclick="myFunction()" style="position: absolute;bottom: 20px;  left: 40%; background-color: rgb(79, 2, 2); color: white; font-size:18px;">Show Ominous Message</button>@*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_fade1*@
+    <div id="snackbar">Click the images on the bottom to get transported to the next page
         <script>
         function myFunction() {
         var x = document.getElementById("snackbar");
@@ -237,9 +225,8 @@ h1 {
         </script>
     </div>
 </div>
-
-<div class="container mt-3" style="columns: 100px 2;">
-    <div class="mt-4 bg-info text-white rounded">
+<div class="row">
+    <div class="col">
         <div class="slideshow1">@*https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_carousel2*@
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-indicators">
@@ -289,7 +276,7 @@ h1 {
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/peac.png" class="d-block w-100" alt="Peacock" style="width:100% height: 50%"/>
+                    <img src="/img/peac.png" class="d-block w-100" alt="Peacock" style="width:100%; height: 50%"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5 id="peac">Peacock App</h5>
                     </div>
@@ -305,15 +292,9 @@ h1 {
             </button>
         </div>
         </div>
-        <div class="conatiner-fluid mt- 3">
-            <h3>WWF works with any platform</h3>
-            <p style="text-align: center;">Discover where to watch your favorite movies and shows across multiple platforms. Keep track of what you've seen and what’s next on your list.</p>
-
-        </div>
-
     </div>
-    <div class="mt-4 bg-info text-white rounded">
-        <div class="slideshow2">
+        <div class="col">
+            <div class="slideshow2">
         <div id="carouselExample2" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -350,12 +331,20 @@ h1 {
             </button>
         </div>
         </div>
-        <div class="conatiner-fluid mt- 3">
-            <h3>WWF works with any platform</h3>
-            <p style="text-align: center;">Find your favorite song from the film. Keep track of what you've heard and what’s your next tune.</p>
-
         </div>
-    </div>
+</div>
+<div style="width: 80%; margin: 40px auto; text-align: center; line-height: 1.6; color: white;">
+    <p>
+        Keeping track of entertainment has never been easier. With so many streaming platforms and media options available, it can be overwhelming to remember what you’ve watched, listened to, or want to explore next. This application simplifies that process by organizing everything in one convenient place.
+    </p>
+
+    <p>
+        Whether you're managing your favorite films, discovering new actors, or building a personalized music collection, this app allows you to stay connected to your interests. You can easily navigate between categories and maintain a complete record of your entertainment journey.
+    </p>
+
+    <p>
+        Designed for simplicity and efficiency, this platform ensures that you never lose track of meaningful content again. From movies to music and beyond, everything you enjoy is just a click away, making your experience both organized and enjoyable.
+    </p>
 </div>
 
 <div class="galcontainer"> @*https://www.w3schools.com/howto/howto_css_shake_image.asp &  https://www.w3schools.com/css/css3_images_modal.asp*@
