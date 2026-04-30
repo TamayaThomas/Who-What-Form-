@@ -13,9 +13,9 @@ public class Review
     public int Score {get; set;}
     public string ReviewText {get; set;} = string.Empty;
 
-    public int FilmID {get; set;} //foreign key 
+    public int? FilmID {get; set;} //foreign key 
 
-    public Film Film {get; set;}
+    public Film? Film {get; set;}
 
     
 }

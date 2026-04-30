@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Film.FilmID" />
             <div class="form-group">
@@ -22,6 +22,7 @@
             <div class="form-group">
                 <label asp-for="Film.Rating" class="control-label"></label>
                 <select asp-for="Film.Rating" class="form-select">
+                    <option value="">Choose...</option>
                     <option>G</option>@*https://en.wikipedia.org/wiki/Motion_Picture_Association_film_rating_system*@
                     <option>PG</option>
                     <option>PG-13</option>

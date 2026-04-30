@@ -40,7 +40,6 @@ namespace Who_What_Form_.Pages_Films
             {
                 var fileName = Path.GetFileName(ImageFile.FileName);
 
-                // Choose where to save (wwwroot/images folder)
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
@@ -48,7 +47,6 @@ namespace Who_What_Form_.Pages_Films
                     await ImageFile.CopyToAsync(stream);
                 }
 
-                // Save path to database
                 Film.ImageUrl = "/img/" + fileName;
             }
 

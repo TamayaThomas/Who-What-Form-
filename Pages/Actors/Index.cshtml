@@ -4,51 +4,143 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0px;
+    }
 
-<h1>Index</h1>
+    .pagination li a {
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+        border: 1px solid rgb(0, 0, 0);
+        color: rgb(240, 20, 20);
+        margin: 0 4px;
+        border-radius: 5px;
+        transition: background-color 1s;  
+    }
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Actor[0].Fname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Actor[0].Lname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Actor[0].ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Actor[0].Film)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Actor) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Film.FilmID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ActorID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ActorID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ActorID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .pagination li a:hover:not(.active) {
+        background-color: rgb(0, 105, 2);
+        color: white;
+    }
+    .btn{
+        transition-duration: 0.4s;
+    }
+    .btn:hover{
+        background-color: #04AA6D;
+        color: white;
+        box-shadow:0 8px 16px 0 rgba(0,0,0,0.6)
+    }@*https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover*@
+    input[type=search] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=search]:focus {
+        width: 50%;
+    }@*https://www.w3schools.com/howto/howto_css_search_button.asp*@
+</style>
+<h1 style="text-align: center;">View the Actors</h1>
+<div class="row">
+    <div class="col">
+        <a asp-page="Create" class="btn w3-left" style="border-radius: 12px; padding: 10px 24px; font-size: 16px; background-color: #f44336;">Add New Actor</a>
+    </div>
+    <div class="col" style="column-width: 300px;">
+        <form role="search" asp-page="./Index" method="get">
+            <div class="input-group mt-2">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input class="form-control me-2" type="search" name="CurrentSearch" value="@Model.CurrentSearch" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        @{
+            //Alternate sort order
+            var firstSort = "first_asc";
+            if (Model.CurrentSort == "first_asc")
+            {
+                firstSort = "first_desc";
+            }
+        }<a asp-page="./Index" asp-route-CurrentSort="@firstSort" class="btn w3-right" style="border-radius: 12px; padding: 10px 24px; font-size: 16px; background-color: #f44336;"> Sort</a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    @foreach (var a in Model.Actor)
+    {
+        <div class="col-md-auto">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    Actor
+                </div>
+                <img src="@a.ImageUrl" class="card-img-top" alt="..." width="75px" height="260x"/>
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => a.Fname) @Html.DisplayFor(modelItem => a.Lname)</h5>
+                    <p><strong>Film: </strong>@Html.DisplayFor(modelItem => a.Film.Title)</p>
+                    <button onclick="document.getElementById('modal-@a.ActorID').style.display='block'" class="w3-button w3-black">See Film Information</button>@*https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_modal3 & https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_modal_fade*@
+                    <div id="modal-@a.ActorID" class="w3-modal w3-animate-opacity">
+                        <div class="w3-modal-content w3-card-4">
+                        <header class="w3-container w3-teal"> 
+                            <span onclick="document.getElementById('modal-@a.ActorID').style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                            <h2>@Html.DisplayFor(modelItem => a.Film.Title)</h2>
+                        </header>
+                        <div class="w3-container">
+                            <p>@Html.DisplayFor(modelItem => a.Film.Rating)</p>
+                            <p>@Html.DisplayFor(modelItem => a.Film.Description)</p>
+                        </div>
+                        <footer class="w3-container w3-teal">
+                            <p>@Html.DisplayFor(modelItem => a.Fname) @Html.DisplayFor(modelItem => a.Lname)</p>
+                        </footer>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secodanry">
+                        <a asp-page="./Edit" asp-route-id="@a.ActorID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@a.ActorID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@a.ActorID">Delete</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    <hr />
+        @{
+            // If we are on page 1, prevDisabled will be set to the "disabled" class
+            // otherwise, it will be empty. So our previous button will be enabled or disabled based on this logic
+            var prevDisabled = "";
+            var nextDisabled = "";
+            if (Model.PageNum <= 1)
+            {
+                prevDisabled = "disabled";
+            }
+            if (Model.PageNum >= Model.TotalPages)
+            {
+                nextDisabled = "disabled";
+            }
+        }
+        <nav aria-label="Page navigation example">@*https://www.w3schools.com/css/tryit.asp?filename=trycss_ex_pagination_transition*@
+            <ul class="pagination">
+                <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-CurrentSort="@Model.CurrentSort" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+                <li class="page-item @nextDisabled"><a class="page-link" asp-page="./Index" asp-route-CurrentSort="@Model.CurrentSort" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+            </ul>
+        </nav>
+</div>
+

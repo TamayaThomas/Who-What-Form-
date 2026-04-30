@@ -21,6 +21,8 @@ namespace Who_What_Form_.Pages_Actors
 
         [BindProperty]
         public Actor Actor { get; set; } = default!;
+        [BindProperty]
+        public IFormFile ImageFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,9 +37,11 @@ namespace Who_What_Form_.Pages_Actors
                 return NotFound();
             }
             Actor = actor;
-           ViewData["FilmID"] = new SelectList(_context.Films, "FilmID", "FilmID");
+           ViewData["FilmID"] = new SelectList(_context.Films, "FilmID", "Title");
             return Page();
         }
+
+        
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
@@ -45,8 +49,33 @@ namespace Who_What_Form_.Pages_Actors
         {
             if (!ModelState.IsValid)
             {
+                ViewData["FilmID"] = new SelectList(_context.Films, "FilmID", "Title");
                 return Page();
             }
+            var existingActor = await _context.Actors
+            .AsNoTracking()
+            .FirstOrDefaultAsync(a => a.ActorID == Actor.ActorID);
+            if (ImageFile != null)
+            {
+                var fileName = Path.GetFileName(ImageFile.FileName);
+
+                
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(stream);
+                }
+
+
+                Actor.ImageUrl = "/img/" + fileName;
+            }
+            else
+            {
+                Actor.ImageUrl = existingActor.ImageUrl;
+            }
+
+           
 
             _context.Attach(Actor).State = EntityState.Modified;
 

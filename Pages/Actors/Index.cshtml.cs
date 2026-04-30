@@ -22,8 +22,42 @@ namespace Who_What_Form_.Pages_Actors
 
         public async Task OnGetAsync()
         {
-            Actor = await _context.Actors
-                .Include(a => a.Film).ToListAsync();
+        
+            var query = _context.Actors
+            .Include(s => s.Film)
+            .AsQueryable();
+
+            if (!string.IsNullOrEmpty(CurrentSearch))
+            {
+                            query = query.Where(s => s.Fname.Contains(CurrentSearch) || s.Fname.Contains(CurrentSearch));
+
+            }
+            switch (CurrentSort)
+            {
+                case "first_asc":
+                    query = query.OrderBy(s => s.Fname);
+                    break;
+                case "first_desc":
+                    query = query.OrderByDescending(s => s.Fname);
+                    break;
+            }
+        
+            TotalPages = (int)Math.Ceiling(query.Count() / (double)PageSize);
+
+            Actor = await query.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
         }
+
+        [BindProperty(SupportsGet = true)]
+        public int PageNum {get; set;} = 1;
+        public int PageSize {get; set;} = 6;
+        public int TotalPages {get; set;}
+
+        // Sorting support
+        [BindProperty(SupportsGet = true)]
+        public string CurrentSort {get; set;} = string.Empty;
+
+        // Search support
+        [BindProperty(SupportsGet = true)]
+        public string CurrentSearch {get; set;} = string.Empty;
     }
 }

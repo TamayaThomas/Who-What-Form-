@@ -9,7 +9,8 @@ public class Actor
     [Key]
     public int ActorID {get; set;}
 
-    public int FilmID {get; set;}
+    [Required]
+    public int? FilmID {get; set;}
 
     [Required]
     [Display(Name = "First Name")]
@@ -17,11 +18,12 @@ public class Actor
     [Required]
     [Display(Name = "Last Name")]
     public string Lname {get; set;}
+
     
     [Display(Name = "Actor Image")]
     public string ImageUrl { get; set; } = string.Empty;
 
 
-    public Film Film {get; set;}
+    public Film? Film {get; set;}
 
 }

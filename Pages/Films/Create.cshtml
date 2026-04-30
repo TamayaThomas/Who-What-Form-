@@ -20,7 +20,8 @@
             </div>
             <div class="form-group">@*https://www.w3schools.com/bootstrap5/tryit.asp?filename=trybs_form_select&stacked=h*@
                 <label asp-for="Film.Rating" class="control-label"></label>
-                <select asp-for="Film.Rating" class="form-select"  name="rating" id="ratings">
+                <select asp-for="Film.Rating" class="form-select">
+                    <option value="">Choose...</option>
                     <option>G</option>@*https://en.wikipedia.org/wiki/Motion_Picture_Association_film_rating_system*@
                     <option>PG</option>
                     <option>PG-13</option>

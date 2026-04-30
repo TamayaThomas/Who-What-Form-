@@ -21,6 +21,8 @@ namespace Who_What_Form_.Pages_Films
 
         [BindProperty]
         public Film Film { get; set; } = default!;
+        [BindProperty]
+        public IFormFile ImageFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -45,6 +47,26 @@ namespace Who_What_Form_.Pages_Films
             if (!ModelState.IsValid)
             {
                 return Page();
+            }
+             var existingFilm = await _context.Films
+            .AsNoTracking()
+            .FirstOrDefaultAsync(f => f.FilmID == Film.FilmID);
+            if (ImageFile != null)
+            {
+                var fileName = Path.GetFileName(ImageFile.FileName);
+
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(stream);
+                }
+
+                Film.ImageUrl = "/img/" + fileName;
+            }
+            else
+            {
+                Film.ImageUrl = existingFilm.ImageUrl;
             }
 
             _context.Attach(Film).State = EntityState.Modified;
