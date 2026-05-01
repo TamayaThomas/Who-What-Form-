@@ -21,6 +21,8 @@ namespace Who_What_Form_.Pages_Musics
 
         [BindProperty]
         public Music Music { get; set; } = default!;
+        [BindProperty]
+        public IFormFile ImageFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,7 +37,7 @@ namespace Who_What_Form_.Pages_Musics
                 return NotFound();
             }
             Music = music;
-           ViewData["FilmID"] = new SelectList(_context.Films, "FilmID", "FilmID");
+           ViewData["FilmID"] = new SelectList(_context.Films, "FilmID", "Title");
             return Page();
         }
 
@@ -47,6 +49,29 @@ namespace Who_What_Form_.Pages_Musics
             {
                 return Page();
             }
+            var existingMusic = await _context.Musics
+            .AsNoTracking()
+            .FirstOrDefaultAsync(a => a.SongID == Music.SongID);
+             if (ImageFile != null)
+            {
+                var fileName = Path.GetFileName(ImageFile.FileName);
+
+                
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(stream);
+                }
+
+
+                Music.ImageUrl = "/img/" + fileName;
+            }
+            else
+            {
+                Music.ImageUrl = existingMusic.ImageUrl;
+            }
+
 
             _context.Attach(Music).State = EntityState.Modified;
 

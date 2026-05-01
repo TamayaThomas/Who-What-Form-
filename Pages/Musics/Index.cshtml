@@ -4,51 +4,158 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    body{
+        background: linear-gradient(325deg, #0f0c29 19%, #525260 48%, #24243e 79%);
+        color: rgb(241, 241, 241);
+        margin: 0;
+        padding: 0;
+    }
+  
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0px;
+    }
 
-<h1>Index</h1>
+    .pagination li a {
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+        border: 1px solid rgb(0, 0, 0);
+        color: rgb(240, 20, 20);
+        margin: 0 4px;
+        border-radius: 5px;
+        transition: background-color 1s;  
+    }
 
-<p>
+    .pagination li a:hover:not(.active) {
+        background-color: rgb(0, 105, 2);
+        color: white;
+    }
+    .btn{
+        transition-duration: 0.4s;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0;
+    }
+    @@keyframes pulseAnimation {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+    }
+    tr:hover {
+        background-color: #c4f3d2;
+        color: black;
+    }
+    tr:hover img{
+        animation-name: pulseAnimation;
+        animation-duration: 1.9s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-fill-mode: both;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ebb7e2;
+    }
+    
+</style>
+
+<h1>Song Library</h1><form role="search" asp-page="./Index" method="get">                
+            <div class="input-group mb-4 mt-4">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input class="form-control me-2" type="search" name="CurrentSearch" value="@Model.CurrentSearch" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+            </div>
+    </form>
+
+<p style="text-align: center;">
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+<p style="text-align: center;">
+    @{
+            //Alternate sort order
+            var firstSort = "first_asc";
+            if (Model.CurrentSort == "first_asc")
+            {
+                firstSort = "first_desc";
+            }
+        }<a asp-page="./Index" asp-route-CurrentSort="@firstSort" asp-route-PageNum="@Model.PageNum"> Sort</a>
+</p>
+<table>
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Music[0].SongTitle)
+                Artist Photo
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Music[0].ArtistName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Music[0].ImageUrl)
+                @Html.DisplayNameFor(model => model.Music[0].SongTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Music[0].Film)
+                @Html.DisplayNameFor(model => model.Music[0].Film.Title)
             </th>
-            <th></th>
+            <th> </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Music) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SongTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtistName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Film.FilmID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.SongID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.SongID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.SongID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var m in Model.Music){
+            <tr>
+                <td>
+                    <img src="@m.ImageUrl" class="image" alt="..." width="205px" height="230px"/>
+                </td>
+                <td style="font-size: larger;">
+                    @m.ArtistName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => m.SongTitle)
+                </td>
+                <td>
+                    @m.Film.Title
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@m.SongID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@m.SongID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@m.SongID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div>
+    <hr />
+        @{
+            // If we are on page 1, prevDisabled will be set to the "disabled" class
+            // otherwise, it will be empty. So our previous button will be enabled or disabled based on this logic
+            var prevDisabled = "";
+            var nextDisabled = "";
+            if (Model.PageNum <= 1)
+            {
+                prevDisabled = "disabled";
+            }
+            if (Model.PageNum >= Model.TotalPages)
+            {
+                nextDisabled = "disabled";
+            }
+        }
+        <nav aria-label="Page navigation example">@*https://www.w3schools.com/css/tryit.asp?filename=trycss_ex_pagination_transition*@
+            <ul class="pagination">
+                <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-CurrentSort="@Model.CurrentSort" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+                <li class="page-item @nextDisabled"><a class="page-link" asp-page="./Index" asp-route-CurrentSort="@Model.CurrentSort" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+            </ul>
+        </nav>
+</div>
+
+
+
+
